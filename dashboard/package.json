@@ -1,0 +1,13 @@
+{
+  "name": "heapscope-dashboard",
+  "version": "1.0.0",
+  "description": "Real-time dynamic memory allocation and leak analytics dashboard for HeapScope C++ Runtime Interceptor.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeapScope | Dynamic Memory Sentinel & Leak Profiler</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="navbar glass-card">
+            <div class="logo-area">
+                <div class="status-indicator active"></div>
+                <h1>Heap<span>Scope</span></h1>
+                <span class="badge">System Diagnostic Console</span>
+            </div>
+            <div class="target-app-info">
+                <span>Target App: <strong>VortexKV Database Engine (C++)</strong></span>
+                <span class="status-tag">Runtime Hooks Active</span>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-grid">
+            <!-- Left Column: Controls & Execution -->
+            <section class="control-panel glass-card">
+                <h2>Interactive Scenario Control</h2>
+                <p class="subtitle">Trigger real-time memory allocations and leak simulations in the VoretxKV C++ backend engine.</p>
+                
+                <div class="scenario-buttons">
+                    <button class="btn btn-clean" onclick="runScenario('clean')">
+                        <span class="btn-icon">⚡</span>
+                        <div class="btn-text">
+                            <strong>Run Clean Benchmark</strong>
+                            <small>200 Transactions • Perfect Free()</small>
+                        </div>
+                    </button>
+
+                    <button class="btn btn-leak" onclick="runScenario('session_leak')">
+                        <span class="btn-icon">🔥</span>
+                        <div class="btn-text">
+                            <strong>Simulate Session Leak</strong>
+                            <small>Orphaned Auth Buffers (malloc)</small>
+                        </div>
+                    </button>
+
+                    <button class="btn btn-leak" onclick="runScenario('cache_leak')">
+                        <span class="btn-icon">⚠️</span>
+                        <div class="btn-text">
+                            <strong>Simulate Cache Expansion Bug</strong>
+                            <small>Dangling Shard Pointers (realloc)</small>
+                        </div>
+                    </button>
+
+                    <button class="btn btn-leak" onclick="runScenario('transaction_leak')">
+                        <span class="btn-icon">📦</span>
+                        <div class="btn-text">
+                            <strong>Simulate Tx Log Bug</strong>
+                            <small>Uncommitted Frames (calloc)</small>
+                        </div>
+                    </button>
+
+                    <button class="btn btn-danger" onclick="runScenario('all_leaks')">
+                        <span class="btn-icon">💥</span>
+                        <div class="btn-text">
+                            <strong>Trigger All Leaks</strong>
+                            <small>Stress Test Memory Sentinel</small>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="console-box">
+                    <div class="console-header">
+                        <span>C++ Target Execution Terminal</span>
+                        <span id="loader" class="loader hidden">Executing...</span>
+                    </div>
+                    <pre id="consoleOutput">Select an execution scenario above to test HeapScope runtime interception...</pre>
+                </div>
+            </section>
+
+            <!-- Right Column: Analytics & Visualization -->
+            <section class="analytics-panel">
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card glass-card">
+                        <span class="kpi-label">Total Memory Allocated</span>
+                        <h3 id="totalAllocated">0 B</h3>
+                        <div class="progress-bar"><div id="allocBar" style="width: 0%"></div></div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <span class="kpi-label">Total Memory Freed</span>
+                        <h3 id="totalFreed">0 B</h3>
+                        <div class="progress-bar"><div id="freedBar" style="width: 0%"></div></div>
+                    </div>
+                    <div class="kpi-card glass-card kpi-leak">
+                        <span class="kpi-label">Active Un-freed Leaks</span>
+                        <h3 id="totalLeaked">0 B</h3>
+                        <span id="leakCountBadge" class="leak-count">0 leaks detected</span>
+                    </div>
+                </div>
+
+                <!-- Charts Area -->
+                <div class="chart-container glass-card">
+                    <h3>Memory Allocation by Function (Bytes)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="functionChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Leaks Table -->
+                <div class="leaks-container glass-card">
+                    <div class="leaks-header">
+                        <h3>Detailed Leak Sentinel Report</h3>
+                        <span id="statusBadge" class="status-clean">CLEAN</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="leaksTable">
+                            <thead>
+                                <tr>
+                                    <th>Address</th>
+                                    <th>Size (Bytes)</th>
+                                    <th>Type</th>
+                                    <th>Origin Function</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaksBody">
+                                <tr>
+                                    <td colspan="4" class="empty-state">No active memory leaks recorded.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

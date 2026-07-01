@@ -1,0 +1,37 @@
+========================================
+   MemGuard Pro Diagnostic Report       
+========================================
+
+--- Memory Allocation by Function ---
+Function: CacheStore::orphanedExpansion -> Total Allocated: 20480 bytes
+Function: CacheStore::allocateShard -> Total Allocated: 20480 bytes
+Function: VortexKV::put_record -> Total Allocated: 2400 bytes
+Function: CacheStore::expandShard -> Total Allocated: 40960 bytes
+Function: VortexKV::put_key -> Total Allocated: 1690 bytes
+Function: VortexKV::put_val -> Total Allocated: 9690 bytes
+Function: VortexKV::expandValueBuffer -> Total Allocated: 4451 bytes
+
+--- Leak Detection ---
+[LEAK] 2048 bytes (malloc) at 0xfbc240 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xfc0ae8 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfbba38 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xfc06e0 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfbfed8 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xfbfad0 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfbf2c8 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xf8eb60 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfbeac0 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xf8e758 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xf8df50 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xf8db48 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xf8d340 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xf8cf38 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfc3060 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xfc2c58 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfc2450 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xfc9b08 (Origin: CacheStore::allocateShard)
+[LEAK] 2048 bytes (malloc) at 0xfc1c48 (Origin: CacheStore::orphanedExpansion)
+[LEAK] 1024 bytes (calloc) at 0xf899f8 (Origin: CacheStore::allocateShard)
+----------------------------------------
+Total Un-freed Memory: 30720 bytes
+========================================

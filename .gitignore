@@ -1,0 +1,23 @@
+# Build Artifacts
+*.exe
+*.obj
+*.o
+*.dll
+*.lib
+*.pdb
+
+# Node / Frontend
+dashboard/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel & IDE
+.vercel/
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

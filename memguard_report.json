@@ -1,0 +1,140 @@
+{
+  "summary": {
+    "totalAllocatedBytes": 100151,
+    "totalFreedBytes": 69431,
+    "totalLeakedBytes": 30720,
+    "totalAllocationCount": 707,
+    "leakCount": 20
+  },
+  "functions": [
+    { "name": "CacheStore::orphanedExpansion", "allocatedBytes": 20480 },
+    { "name": "CacheStore::allocateShard", "allocatedBytes": 20480 },
+    { "name": "VortexKV::put_record", "allocatedBytes": 2400 },
+    { "name": "CacheStore::expandShard", "allocatedBytes": 40960 },
+    { "name": "VortexKV::put_key", "allocatedBytes": 1690 },
+    { "name": "VortexKV::put_val", "allocatedBytes": 9690 },
+    { "name": "VortexKV::expandValueBuffer", "allocatedBytes": 4451 }
+  ],
+  "leaks": [
+    {
+      "address": "0xfbc240",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xfc0ae8",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfbba38",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xfc06e0",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfbfed8",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xfbfad0",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfbf2c8",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xf8eb60",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfbeac0",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xf8e758",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xf8df50",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xf8db48",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xf8d340",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xf8cf38",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfc3060",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xfc2c58",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfc2450",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xfc9b08",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    },
+    {
+      "address": "0xfc1c48",
+      "size": 2048,
+      "type": "malloc",
+      "origin": "CacheStore::orphanedExpansion"
+    },
+    {
+      "address": "0xf899f8",
+      "size": 1024,
+      "type": "calloc",
+      "origin": "CacheStore::allocateShard"
+    }
+  ]
+}
