@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <vector>
 #include <iomanip>
+#include <mutex>
 
 namespace MemGuard {
 
@@ -26,6 +27,7 @@ private:
     size_t totalFreedBytes = 0;
     size_t totalAllocationCount = 0;
     bool active = true;
+    std::mutex mtx;
 
 public:
     static Sentinel& getInstance() {
@@ -39,6 +41,7 @@ public:
 
     void recordAllocation(void* ptr, size_t size, const std::string& type, const std::string& origin) {
         if (!ptr || !active) return;
+        std::lock_guard<std::mutex> lock(mtx);
         activeAllocations[ptr] = {size, origin, type};
         allocationsPerFunction[origin] += size;
         totalAllocatedBytes += size;
@@ -47,6 +50,7 @@ public:
 
     void recordFree(void* ptr) {
         if (!ptr || !active) return;
+        std::lock_guard<std::mutex> lock(mtx);
         auto it = activeAllocations.find(ptr);
         if (it != activeAllocations.end()) {
             totalFreedBytes += it->second.size;
@@ -56,6 +60,7 @@ public:
 
     void recordRealloc(void* oldPtr, void* newPtr, size_t newSize, const std::string& origin) {
         if (!active) return;
+        std::lock_guard<std::mutex> lock(mtx);
         if (oldPtr && activeAllocations.find(oldPtr) != activeAllocations.end()) {
             totalFreedBytes += activeAllocations[oldPtr].size;
             activeAllocations.erase(oldPtr);
