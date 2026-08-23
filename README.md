@@ -104,7 +104,3 @@ cat memguard_report.json
 
 ---
 
-## 📝 License & Author
-
-Developed as an advanced Systems Engineering & Instrumentation portfolio project.  
-Licensed under the **MIT License**.
